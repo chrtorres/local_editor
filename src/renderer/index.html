@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Local Editor</title>
+  </head>
+  <body>
+    <header>
+      <strong>Local Editor</strong>
+      <button type="button" id="open-folder">Open Folder</button>
+      <button type="button" id="save-file" disabled>Save</button>
+      <span id="workspace-label">No folder open</span>
+    </header>
+    <div class="workspace">
+      <aside id="tree" aria-label="Files"></aside>
+      <section class="editor-pane">
+        <div id="tabs" role="tablist"></div>
+        <div class="editor-stack">
+          <div id="editor"></div>
+          <div id="empty-state">Open a folder, then choose a file. Highlight code to refactor, fix, or document it.</div>
+        </div>
+        <form id="inline-form">
+          <p id="selection-status">Select code to refactor, fix, or document.</p>
+          <label>
+            Instruction
+            <input id="inline-instruction" aria-label="Instruction" spellcheck="false" placeholder="Optional note for the edit, or what to generate" />
+          </label>
+          <div class="inline-actions">
+            <button type="button" id="refactor" disabled>Refactor</button>
+            <button type="button" id="fix" disabled>Fix</button>
+            <button type="button" id="document" disabled>Document</button>
+            <button type="button" id="generate" disabled>Generate</button>
+          </div>
+        </form>
+        <div id="proposal" hidden>
+          <h2 id="proposal-title">Edit</h2>
+          <pre id="proposal-code"></pre>
+          <p id="proposal-error" role="alert"></p>
+          <div class="proposal-actions">
+            <button type="button" id="accept" disabled>Accept</button>
+            <button type="button" id="reject">Reject</button>
+          </div>
+        </div>
+      </section>
+      <aside id="chat" aria-label="Chat">
+        <h2>Chat</h2>
+        <div id="transcript"></div>
+        <form id="chat-form">
+          <textarea id="chat-input" aria-label="Question about this project" rows="4" spellcheck="false" placeholder="Ask about this project"></textarea>
+          <button type="submit" id="ask">Ask</button>
+        </form>
+        <p id="chat-error" role="alert"></p>
+      </aside>
+    </div>
+    <footer>
+      <span id="ai-status"></span>
+      <label>
+        Model
+        <input id="model" aria-label="Model" spellcheck="false" />
+      </label>
+      <label>
+        AI URL
+        <input id="ai-url" aria-label="AI URL" spellcheck="false" />
+      </label>
+      <button type="button" id="detect-models">Detect models</button>
+    </footer>
+    <script type="module" src="./src/main.js"></script>
+  </body>
+</html>

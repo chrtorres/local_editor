@@ -1,0 +1,238 @@
+:root {
+  color-scheme: dark;
+  --bg: #1c1b19;
+  --panel: #262420;
+  --panel-2: #312e29;
+  --line: #433e36;
+  --text: #f4efe6;
+  --muted: #b7ab9c;
+  --accent: #e0a45c;
+  --accent-ink: #2a2116;
+  --danger: #e07a5f;
+  --ok: #8fbfa8;
+  font-family: Ubuntu, "Segoe UI", sans-serif;
+}
+
+* { box-sizing: border-box; }
+
+html, body {
+  height: 100%;
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  min-height: 100%;
+}
+
+header, footer {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 8px 12px;
+  background: var(--panel);
+  border-bottom: 1px solid var(--line);
+}
+
+footer {
+  border-bottom: 0;
+  border-top: 1px solid var(--line);
+}
+
+header strong { letter-spacing: 0.02em; }
+
+#workspace-label, #ai-status {
+  color: var(--muted);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+#ai-status { flex: 1; }
+
+button, input, textarea {
+  font: inherit;
+  color: var(--text);
+  background: var(--panel-2);
+  border: 1px solid var(--line);
+  border-radius: 6px;
+}
+
+button {
+  padding: 6px 10px;
+  cursor: pointer;
+}
+
+button:hover:not(:disabled) { border-color: var(--accent); }
+
+button:disabled {
+  cursor: not-allowed;
+  opacity: 0.45;
+}
+
+#refactor, #fix, #document, #generate, #accept, #ask, #open-folder {
+  background: var(--accent);
+  color: var(--accent-ink);
+  border-color: transparent;
+  font-weight: 650;
+}
+
+#accept { background: var(--ok); }
+
+input, textarea {
+  padding: 6px 8px;
+  min-width: 0;
+}
+
+textarea { width: 100%; resize: vertical; }
+
+.workspace {
+  flex: 1;
+  min-height: 0;
+  display: grid;
+  grid-template-columns: 230px minmax(0, 1fr) 340px;
+}
+
+#tree, #chat {
+  background: var(--panel);
+  min-height: 0;
+  overflow: auto;
+}
+
+#tree { border-right: 1px solid var(--line); padding: 8px; }
+
+#tree button.file {
+  display: block;
+  width: 100%;
+  text-align: left;
+  background: transparent;
+  border: 0;
+  border-radius: 4px;
+  padding: 4px 8px;
+}
+
+#tree details { margin-left: 8px; }
+
+#tree summary { cursor: pointer; color: var(--muted); }
+
+.editor-pane {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  min-height: 0;
+}
+
+#tabs {
+  display: flex;
+  gap: 4px;
+  min-height: 36px;
+  align-items: end;
+  padding: 0 8px;
+  border-bottom: 1px solid var(--line);
+}
+
+#tabs button {
+  background: transparent;
+  border: 0;
+  border-bottom: 2px solid var(--accent);
+  border-radius: 0;
+}
+
+.editor-stack {
+  position: relative;
+  flex: 1;
+  min-height: 0;
+}
+
+#editor { height: 100%; }
+
+#empty-state {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  padding: 24px;
+  text-align: center;
+  color: var(--muted);
+  pointer-events: none;
+}
+
+#empty-state[hidden] { display: none; }
+
+#inline-form, #proposal {
+  border-top: 1px solid var(--line);
+  padding: 8px 12px;
+  background: #221f1c;
+}
+
+#inline-form label, #chat-form {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  color: var(--muted);
+  font-size: 13px;
+}
+
+.inline-actions, .proposal-actions {
+  display: flex;
+  gap: 8px;
+  margin-top: 8px;
+}
+
+#proposal h2 { margin: 0 0 8px; font-size: 15px; }
+
+#proposal-code {
+  max-height: 24vh;
+  overflow: auto;
+  margin: 0;
+  padding: 8px;
+  background: #151311;
+  border-radius: 6px;
+  white-space: pre-wrap;
+}
+
+#proposal-error:empty, #chat-error:empty { display: none; }
+
+#proposal-error, #chat-error { color: var(--danger); margin: 8px 0 0; }
+
+#chat {
+  display: flex;
+  flex-direction: column;
+  border-left: 1px solid var(--line);
+  padding: 8px 12px 12px;
+}
+
+#chat h2 { margin: 4px 0 8px; font-size: 15px; }
+
+#transcript {
+  flex: 1;
+  overflow: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.message {
+  padding: 8px 10px;
+  border-radius: 8px;
+  background: var(--panel-2);
+}
+
+.message.user { background: #3a3126; }
+
+.message .using { margin: 0 0 6px; color: var(--ok); font-size: 12px; }
+
+.message .body { margin: 0; white-space: pre-wrap; }
+
+footer label {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  color: var(--muted);
+  font-size: 13px;
+}
+
+footer input { width: 220px; }
